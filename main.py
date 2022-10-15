@@ -8,13 +8,17 @@ CORS(app)
 
 
 @app.route('/')
-# def homePage():
-#     return render_template('homepage.html', title="Home")
+def homePage():
+    return render_template('homepage.html', title="Home")
 
 # show network page
 @app.route('/network')
 def networkPage():
     print("Hi")
+    return render_template('network.html', title="Network")
+
+@app.route('/network')
+def networkPage():
     return render_template('network.html', title="Network")
 
 @app.route('/networkData')
