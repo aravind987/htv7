@@ -15,7 +15,7 @@ def networkPage():
 
 #database page
 @app.route('/add-connection')
-def databasePage():
+def addConnectionPage():
     return render_template('add-connection.html', title="Add Connection")
 
 #database page
