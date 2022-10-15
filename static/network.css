@@ -1,3 +1,13 @@
-body {
-    background-color: red;
+
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+}
+
+.nodeBackground {
+    display: block;
+    z-index: 0;
 }
