@@ -42,10 +42,10 @@
             
             {% for relationship in relationships %}
               <tr>
-                <th scope="row">{{relationship.firstName relationship.lastName}}</th>
-                <td>{{relationship.company}}</td>
-                <td>{{relationship.jobTitle}}</td>
-                <td>{{relationship.education}}</td>
+                <th scope="row">{{relationship.getName()}}</th>
+                <td>{{relationship.getCompany()}}</td>
+                <td>{{relationship.getJobTitle()}}</td>
+                <td>{{relationship.getEducation()}}</td>
               </tr>
             {% endfor %}
             <!--
