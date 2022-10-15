@@ -15,13 +15,13 @@ app = Flask(__name__)
 
 #database page
 @app.route('/add-connection')
-def databasePage():
+def addConnectionPage():
     return render_template('add-connection.html', title="Add Connection")
 
 #database page
-@app.route('/database')
-def databasePage():
-    return render_template('database.html', title="Database")
+# @app.route('/database')
+# def databasePage():
+#     return render_template('database.html', title="Database")
 
 if __name__ == '__main__':
     app.run()
