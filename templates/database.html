@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="{{url_for('static', filename='database.css')}}">
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +9,8 @@
 </head>
 
 <body>
+  <script src="demo_script_src.js">
+  </script>
     <!--Drop down menu for sorting database-->
     <div class="dropdown" style="padding:15px; text-align: center;">
       <b style="display: inline-block; font-size: 15px;">Sort By: </b>
@@ -27,7 +28,7 @@
 
     <!--Displays database-->
     <div style="padding:20px">
-      <table class="table table-striped">
+      <table class="table table-striped" id="data">
           <thead>
             <tr>
               <th scope="col">Name</th>
@@ -38,6 +39,16 @@
           </thead>
           <tbody>
           <!--Create data entries based on number of connections in database-->
+            
+            {% for relationship in relationships %}
+              <tr>
+                <th scope="row">{{relationship.firstName relationship.lastName}}</th>
+                <td>{{relationship.company}}</td>
+                <td>{{relationship.jobTitle}}</td>
+                <td>{{relationship.education}}</td>
+              </tr>
+            {% endfor %}
+            <!--
             <tr>
               <th scope="row">John Doe</th>
               <td>N/A</td>
@@ -50,11 +61,11 @@
               <td>Freelancer</td>
               <td>Bachelors in Honkai</td>
             </tr>
+            -->
           </tbody>
         </table>
       </div>
     <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="database.js"></script>
   </body>
 </html>
     
