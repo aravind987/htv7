@@ -28,11 +28,6 @@ def networkData():
 def addConnectionPage():
     return render_template('add-connection.html', title="Add Connection")
 
-# network page
-@app.route('/network')
-def networkPage():
-    return render_template('network.html', title="Network")
-
 #database page
 @app.route('/database')
 def databasePage():
