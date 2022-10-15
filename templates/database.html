@@ -1,14 +1,6 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Database</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-</head>
-
-<body>
+{% extends 'layout.html' %}
+{% block content %}
     <!--Drop down menu for sorting database-->
     <div class="dropdown" style="padding:15px; text-align: center;">
       <b style="display: inline-block; font-size: 15px;">Sort By: </b>
@@ -37,13 +29,16 @@
           </thead>
           <tbody>
           <!--Create data entries based on number of connections in database-->
-            
-            {% for relationship in relationships %}
+            <script>
+              import relationships from '../data/relationshipData.json' assert {type: 'json'};
+              const obj = JSON.parse(relationships);
+            </script>
+            {% for person in obj.relationships %}
               <tr>
-                <th scope="row">{{relationship.getName()}}</th>
-                <td>{{relationship.getCompany()}}</td>
-                <td>{{relationship.getJobTitle()}}</td>
-                <td>{{relationship.getEducation()}}</td>
+                <th scope="row">{{person.firstName obj.lastName}}</th>
+                <td>{{person.company()}}</td>
+                <td>{{person.jobTitle()}}</td>
+                <td>{{person.education()}}</td>
               </tr>
             {% endfor %}
             <!--
@@ -64,6 +59,5 @@
         </table>
       </div>
     <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+{% endblock content %}
     
