@@ -1,0 +1,34 @@
+{
+  "relationships": {
+    "John Doe": {
+      "firstName": "John",
+      "lastName": "Doe",
+      "date": "XX/XX/XXXX",
+      "contactInfo": {
+        "phoneNumber": "(420)-696-9420",
+        "emailAddress": "john.doeCool@this.site.ca"
+      },
+      "connectionReason": "Cuz they cool",
+      "company": "N/A",
+      "industry": "N/A",
+      "jobTitle": "Free lancer",
+      "education": "Bachelors in Genshin",
+      "otherNotes": "This person cool"
+    },
+    "Marry Doe": {
+      "firstName": "Marry",
+      "lastName": "Doe",
+      "date": "XX/XX/XXXX",
+      "contactInfo": {
+        "phoneNumber": "(696)-942-0420",
+        "emailAddress": "mary.doeCool@this.site.ca"
+      },
+      "connectionReason": "Cuz they cool too",
+      "company": "N/A",
+      "industry": "N/A",
+      "jobTitle": "Free lancer 2",
+      "education": "Bachelors in Honkai",
+      "otherNotes": "This person cool 2"
+    }
+  }
+}
