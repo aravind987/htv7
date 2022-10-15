@@ -12,11 +12,6 @@ def homePage():
     return render_template('index.html', title="Home")
 
 # show network page
-# @app.route('/network')
-# def networkPage():
-#     print("Hi")
-#     return render_template('network.html', title="Network")
-
 @app.route('/network')
 def networkPage():
     return render_template('network.html', title="Network")
@@ -32,11 +27,6 @@ def networkData():
 @app.route('/add-connection')
 def addConnectionPage():
     return render_template('add-connection.html', title="Add Connection")
-
-# # network page
-# @app.route('/network')
-# def networkPage():
-#     return render_template('network.html', title="Network")
 
 #database page
 @app.route('/database')
