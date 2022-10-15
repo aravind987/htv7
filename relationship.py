@@ -1,6 +1,3 @@
-from socket import INADDR_UNSPEC_GROUP
-
-
 class relationship:
 
     #Variables
