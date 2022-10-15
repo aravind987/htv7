@@ -18,9 +18,9 @@ def networkPage():
 
 @app.route('/networkData')
 def networkData():
-    file = open('./data/relationshipData.json');
+    file = open('./data/relationshipData.json')
 
-    relationshipDict = (json.load(file))["relationships"];
+    relationshipDict = (json.load(file))["relationships"]
     return jsonify(relationshipDict);
 
 #database page
