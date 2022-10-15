@@ -57,3 +57,11 @@ main {
 .scrollarea {
   overflow-y: auto;
 }
+
+.sidebar {
+    z-index: 1000;
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+}

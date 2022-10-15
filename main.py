@@ -14,9 +14,9 @@ app = Flask(__name__)
 #     return render_template('network.html', title="Network")
 
 #database page
-# @app.route('/add-connection')
-# def addConnectionPage():
-#     return render_template('add-connection.html', title="Add Connection")
+@app.route('/add-connection')
+def databasePage():
+    return render_template('add-connection.html', title="Add Connection")
 
 #database page
 @app.route('/database')
