@@ -62,6 +62,62 @@ function displayRelationshipCircle(name, index, xPosition, yPosition, acolor) {
 }
 
 
+function initializeRelationships() {
+    var distanceScale = 5;
+
+
+    var ringCount = 2;
+    var dictionarySize = 100;
+    var remainingCircles = dictionarySize;
+
+    var distance = ORIGINRADIUS * distanceScale
+
+    var circumference = distance * 2 * Math.PI;
+
+    var numberOfCircles = circumference/(RADIUS*8)
+    var currentCount = 0;
+
+    var angleIncrease = 2*Math.PI/numberOfCircles
+
+    if(remainingCircles < numberOfCircles) {
+            numberOfCircles = circumference / remainingCircles
+
+            angleIncrease = 2*Math.PI/remainingCircles
+    }
+
+    var angle = 0;
+    var color = circleColors[0]
+    for(let i = 0; i < dictionarySize; i++) {
+
+        if(currentCount >= numberOfCircles) {
+            distance = ORIGINRADIUS * distanceScale * ringCount++;
+            circumference = distance * 2 * Math.PI;
+            numberOfCircles = circumference/(RADIUS*8)
+            currentCount = 0;
+            angleIncrease = 2*Math.PI/numberOfCircles
+
+            if(remainingCircles < numberOfCircles) {
+                numberOfCircles = circumference / remainingCircles
+                color = circleColors[1]
+                angleIncrease = 2*Math.PI/remainingCircles
+                console.log("True")
+            }
+
+        }
+
+
+        var xPosition = distance * Math.cos(angle)
+        var yPosition = distance * Math.sin(angle)
+
+        angle = angle + angleIncrease
+
+        displayRelationshipCircle(relationshipData[i], i, xPosition, yPosition, color);
+
+        currentCount++;
+        remainingCircles--;
+
+    }
+}
 
 initializeRelationships();
 
