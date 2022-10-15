@@ -1,4 +1,4 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
+import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.132.2-dLPTyDAYt6rc6aB18fLm/mode=imports/optimized/three.js';
 import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js';
 
 //Initializing Camera, Scene, Controls, and Renderer
@@ -28,7 +28,6 @@ camera.position.setZ(30);
 renderer.render (scene, camera);
 
 const geometry = new THREE.CircleGeometry(RADIUS, SEGMENTS);
-
 
 const controls = new OrbitControls( camera, renderer.domElement );
 
