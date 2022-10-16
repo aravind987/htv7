@@ -52,13 +52,17 @@ document.getElementById("company10").innerHTML = relationshipData[Object.keys(re
 document.getElementById("job10").innerHTML = relationshipData[Object.keys(relationshipData)[9]].jobTitle;
 document.getElementById("education10").innerHTML = relationshipData[Object.keys(relationshipData)[9]].education;
 
-// For Demo
-//document.getElementById("name11").innerHTML = relationshipData[Object.keys(relationshipData)[10]].firstName.concat(" ", relationshipData[Object.keys(relationshipData)[10]].lastName);
-//document.getElementById("company11").innerHTML = relationshipData[Object.keys(relationshipData)[10]].company;
-//document.getElementById("job11").innerHTML = relationshipData[Object.keys(relationshipData)[10]].jobTitle;
-//document.getElementById("education11").innerHTML = relationshipData[Object.keys(relationshipData)[10]].education;
+document.getElementById("name11").innerHTML = relationshipData[Object.keys(relationshipData)[10]].firstName.concat(" ", relationshipData[Object.keys(relationshipData)[10]].lastName);
+document.getElementById("company11").innerHTML = relationshipData[Object.keys(relationshipData)[10]].company;
+document.getElementById("job11").innerHTML = relationshipData[Object.keys(relationshipData)[10]].jobTitle;
+document.getElementById("education11").innerHTML = relationshipData[Object.keys(relationshipData)[10]].education;
 
-//document.getElementById("name12").innerHTML = relationshipData[Object.keys(relationshipData)[11]].firstName.concat(" ", relationshipData[Object.keys(relationshipData)[11]].lastName);
-//document.getElementById("company12").innerHTML = relationshipData[Object.keys(relationshipData)[11]].company;
-//document.getElementById("job12").innerHTML = relationshipData[Object.keys(relationshipData)[11]].jobTitle;
-//document.getElementById("education12").innerHTML = relationshipData[Object.keys(relationshipData)[11]].education;
+document.getElementById("name12").innerHTML = relationshipData[Object.keys(relationshipData)[11]].firstName.concat(" ", relationshipData[Object.keys(relationshipData)[11]].lastName);
+document.getElementById("company12").innerHTML = relationshipData[Object.keys(relationshipData)[11]].company;
+document.getElementById("job12").innerHTML = relationshipData[Object.keys(relationshipData)[11]].jobTitle;
+document.getElementById("education12").innerHTML = relationshipData[Object.keys(relationshipData)[11]].education;
+
+document.getElementById("name13").innerHTML = relationshipData[Object.keys(relationshipData)[12]].firstName.concat(" ", relationshipData[Object.keys(relationshipData)[12]].lastName);
+document.getElementById("company13").innerHTML = relationshipData[Object.keys(relationshipData)[12]].company;
+document.getElementById("job13").innerHTML = relationshipData[Object.keys(relationshipData)[12]].jobTitle;
+document.getElementById("education13").innerHTML = relationshipData[Object.keys(relationshipData)[12]].education;

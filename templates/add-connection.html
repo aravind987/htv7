@@ -9,7 +9,7 @@
     <title>Sidebars · Bootstrap v5.2</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.2/examples/sidebars/">
-
+    <link rel="stylesheet" href="{{url_for('static',filename='homepagebutton.css')}}">
     <link href="{{url_for('static', filename='/assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
 
     <style>
@@ -192,8 +192,9 @@
           </div>
 
           <!-- submit button -->
-          <div class="col-12">
-            <button id="submitbtn" class="btn btn-primary" type="submit">Submit form</button>
+          <div class="col-12" style="margin-bottom: 20px;">
+            <!-- <button id="submitbtn" class="btn btn-primary" type="submit">Submit form</button> -->
+            <a style="padding:0;"><button class="custom-btn btn-3" id="submitbtn" style="margin-top: 30px;"><span>Submit</span></button></a>
           </div>
   
         </form>
