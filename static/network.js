@@ -5,26 +5,38 @@ import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.132.2-dLPTyDAYt6rc6
 
 import * as THREE from './three/build/three.module.js'
 */
+
+import { TextGeometry } from './three/examples/jsm/geometries/TextGeometry.js'
+import { FontLoader } from './three/examples/jsm/loaders/FontLoader.js'
 import { OrbitControls } from './three/examples/jsm/controls/OrbitControls.js'
-
-
 import { RelationshipCircle } from './relationshipCircle.js'
 import { RelationshipBox } from './relationshipBox.js'
+import { TextGenerate } from './textGenerate.js'
 
 
-var circleColors = [0xD5806E, 0xCDD56E, 0x6ED585]
 const scene = new THREE.Scene();
-scene.background = new THREE.Color( 0xffffff );
 
-var font = './static/three/examples/fonts/helvetiker_regular.typeface.json'
+
 
 //Sets up some stats
 const ORIGINRADIUS = 20;
 const SEGMENTS = 32;
 const RADIUS = 13;
+const DISTANCESCALE = 4;
+const SEPARATIONSCALE = 6;
 
-//Array for all shapes
-let relationshipsShape = [];
+//RED, YELLOW, GREEN, SKY, BLUE, PURPLE, PINK
+const RED = 0xff0000
+const YELLOW = 0xF7FF00
+const GREEN = 0x17FF00
+const SKY = 0x00FFD4
+const BLUE = 0x006CFF
+const PURPLE = 0xB200FF
+const PINK = 0xFF0083
+const BLACK = 0x000000
+const COLOR = [0xff0000, 0xF7FF00, 0x17FF00, 0x00FFD4, 0x006CFF,0xB200FF, 0xFF0083 ]
+
+var GenshinFont = './static/GenshinImpact.json'
 
 //Initializing Camera, Scene, Controls, and Renderer
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -42,20 +54,12 @@ renderer.render (scene, camera);
 
 //Modifying controls for 2D
 const controls = new OrbitControls( camera, renderer.domElement );
-
 controls.enableRotate = false;
-
 controls.mouseButtons = {
     LEFT: THREE.MOUSE.PAN,
     MIDDLE: THREE.MOUSE.DOLLY,
     RIGHT: THREE.MOUSE.ROTATE
 }
-
-
-//Retrieve relationship data from json
-const res = await fetch("http://localhost:5000/networkData")
-var relationshipData = await res.json()
-console.log(relationshipData[Object.keys(relationshipData)[0]])
 
 //Raycaster for on-click
 const raycaster = new THREE.Raycaster();
@@ -87,23 +91,21 @@ function render( event ) {
                 var distance = - camera.position.z / dir.z;
                 var pos = camera.position.clone().add( dir.multiplyScalar( distance ) );
 
-                console.log(pos)
 	            var xPosition = pos.x + width/2
 	            var yPosition = pos.y - height/2
 
-
-
+                //If infoBox already exists, replaces
                 if(infoBox != null)
                     scene.remove(infoBox.boxForm)
 
 	            infoBox = new RelationshipBox(width, height, xPosition, yPosition, relationshipData[rayObject.name])
 	            scene.add(infoBox.boxForm)
 	        }
-            intersects[i].object.material.color.set( "rgb(255, 0, 0)" )
         }
 
     }
 
+    //If clicked outside of box
     if(intersects.length == 0) {
         if(infoBox != null) {
             scene.remove(infoBox.boxForm)
@@ -111,11 +113,11 @@ function render( event ) {
         }
     }
 
-
 	renderer.render(scene, camera)
 
 }
 
+//Removes boxes when zoomed out
 function removeWhenFar() {
     if(camera.position.z > 60 && infoBox != null) {
         scene.remove(infoBox.boxForm)
@@ -126,48 +128,71 @@ function removeWhenFar() {
 window.addEventListener("click", render);
 window.addEventListener( 'pointermove', onPointerMove );
 
-
-
-
-var firstCircle = new RelationshipCircle(10, new THREE.Color(0x1342A3), relationshipData["John Doe"], font)
-
-firstCircle.circleShape.position.x = -50
-scene.add(firstCircle.circleShape)
-scene.add(firstCircle.nameShape)
-
-//Displays relationships as circles
-function displayRelationshipCircle(name, index, xPosition, yPosition, acolor) {
-    var material = new THREE.MeshBasicMaterial( { color: acolor, wireframe: false});
-    //Creates circle
-    var circle = new THREE.Mesh(geometry, material);
-    circle.position.x = xPosition
-    circle.position.y = yPosition
-    circle.name = name;
-    circle.color
-
-    //Adds circle to array
-    relationshipsShape[index] = circle;
-    scene.add(circle)
+function getRandomInt(max) {
+    return Math.floor(Math.random()*max);
 }
 
 function initializePersonalCircle() {
-
     var personalGeometry = new THREE.CircleGeometry(ORIGINRADIUS, SEGMENTS)
     var personalMaterial = new THREE.MeshBasicMaterial( { color: 0xFF6347, wireframe: false});
     var circle = new THREE.Mesh(personalGeometry, personalMaterial);
-
     circle.name = "My Name";
-
     scene.add(circle);
+
+    //text, size, fontJSON, textColor, scene, xPosition, yPosition
+    var personalName = new TextGenerate("YOU", 5, GenshinFont, BLACK, scene, 0, 0)
 }
 
-initializePersonalCircle()
+function circleFormationGenerate(data, originX, originY) {
+    var totalPeople = Object.keys(uncategorizedRelationshipData).length;
+    var distance = ORIGINRADIUS * DISTANCESCALE
+    var maxPerRing = Math.floor(2*Math.PI*distance / (RADIUS*SEPARATIONSCALE))
+    var angleIncrease = (2*Math.PI / maxPerRing)
+    var currentCount = 0;
+
+    var last = false;
+    for(let i = 0; i < totalPeople; i++) {
+        //Find people per ring (Circumference / Space per Person)
+        if(currentCount >= maxPerRing) {
+            maxPerRing = Math.floor(2*Math.PI*distance / (RADIUS*SEPARATIONSCALE))
+
+            angleIncrease = (2*Math.PI / maxPerRing)
+            currentCount = 0;
+            distance += ORIGINRADIUS * DISTANCESCALE;
+            if(totalPeople-i < maxPerRing && !last) {
+                angleIncrease = 2*Math.PI / (totalPeople - i)
+                last = true
+            }
+        }
+
+
+        var xPosition = Math.cos(angleIncrease*currentCount) * distance + originX
+        var yPosition = Math.sin(angleIncrease*currentCount) * distance + originY
+
+        //Radius, color, jsonData, fontJSON, scene, xPosition, yPosition
+        var personCircle = new RelationshipCircle(RADIUS, COLOR[getRandomInt(7)], data[Object.keys(data)[i]], GenshinFont, scene, xPosition, yPosition)
+        console.log(personCircle)
+        var personName = new TextGenerate(data[Object.keys(data)[i]]["firstName"]+data[Object.keys(data)[i]]["lastName"], 5, GenshinFont, BLACK, scene, xPosition, yPosition)
+        currentCount++
+    }
+}
 
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
     removeWhenFar();
 }
+
+
+
+//Retrieve relationship data from json
+const res = await fetch("http://localhost:5000/networkData")
+var uncategorizedRelationshipData = await res.json()
+
+
+circleFormationGenerate(uncategorizedRelationshipData, 0, 0)
+
+initializePersonalCircle()
 
 animate();
 
