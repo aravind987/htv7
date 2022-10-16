@@ -34,7 +34,7 @@ def handleForm():
 
     relationshipDict[fullName] = [firstName,lastName,date,[phoneNum,email],company,industry,jobTitle,education,otherNotes]
     file = open('./data/relationshipData.json',"w")
-    file.write(json.dumps(relationshipDict))
+    file.write(json.dumps(relationshipDict)["relationships"])
     return redirect ('/')
 
 # show network page
