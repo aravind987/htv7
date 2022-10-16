@@ -12,6 +12,7 @@ import { OrbitControls } from './three/examples/jsm/controls/OrbitControls.js'
 import { RelationshipCircle } from './relationshipCircle.js'
 import { RelationshipBox } from './relationshipBox.js'
 import { TextGenerate } from './textGenerate.js'
+import { displayInformation, closeInformation} from './informationBox.js'
 
 
 const scene = new THREE.Scene();
@@ -78,13 +79,11 @@ function render( event ) {
 
 	for ( let i = 0; i < intersects.length; i ++ ) {
 	    var rayObject = intersects[i].object;
-	    if(rayObject.name != "My Name" && rayObject.name != "Deletable" && camera.position.z <= 60) {
-	        if(!rayObject.material.color.equals("rgb(255, 0, 0)")) {
-	            rayObject.material.color.set("rgb(255, 0, 0)")
+	    if(rayObject.name != "My Name" && rayObject.name != "Deletable" && camera.position.z <= 300) {
 
-	            var width = rayObject.geometry.parameters.radius * 2;
-	            var height = width * 3/2;
-
+	            var width = rayObject.geometry.parameters.radius * 3;
+	            var height = width * 2;
+                /*
                 var vector = new THREE.Vector3(pointer.x, pointer.y, 0.5);
                 vector.unproject( camera );
                 var dir = vector.sub( camera.position ).normalize();
@@ -98,19 +97,24 @@ function render( event ) {
                 if(infoBox != null)
                     scene.remove(infoBox.boxForm)
 
-	            infoBox = new RelationshipBox(width, height, xPosition, yPosition, relationshipData[rayObject.name])
-	            scene.add(infoBox.boxForm)
-	        }
+	            infoBox = new RelationshipBox(width, height, xPosition, yPosition, uncategorizedRelationshipData[rayObject.name], rayObject.material.color, scene)
+	            scene.add(infoBox.boxForm)*/
+                displayInformation(uncategorizedRelationshipData[rayObject.name]);
+
+
         }
 
     }
 
     //If clicked outside of box
     if(intersects.length == 0) {
+        /*
         if(infoBox != null) {
             scene.remove(infoBox.boxForm)
             infoBox = null
         }
+        */
+        closeInformation()
     }
 
 	renderer.render(scene, camera)
@@ -119,7 +123,7 @@ function render( event ) {
 
 //Removes boxes when zoomed out
 function removeWhenFar() {
-    if(camera.position.z > 60 && infoBox != null) {
+    if(camera.position.z > 300 && infoBox != null) {
         scene.remove(infoBox.boxForm)
         infoBox = null
     }
@@ -171,7 +175,6 @@ function circleFormationGenerate(data, originX, originY) {
 
         //Radius, color, jsonData, fontJSON, scene, xPosition, yPosition
         var personCircle = new RelationshipCircle(RADIUS, COLOR[getRandomInt(7)], data[Object.keys(data)[i]], GenshinFont, scene, xPosition, yPosition)
-        console.log(personCircle)
         var personName = new TextGenerate(data[Object.keys(data)[i]]["firstName"]+data[Object.keys(data)[i]]["lastName"], 5, GenshinFont, BLACK, scene, xPosition, yPosition)
         currentCount++
     }

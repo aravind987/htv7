@@ -7,7 +7,6 @@ export class RelationshipCircle {
         this.color = color
         this.name = jsonData["firstName"] + " " + jsonData["lastName"]
 
-
         var geometryCircle = new THREE.CircleGeometry(radius, 32)
         var materialCircle = new THREE.MeshBasicMaterial({ color: color, wireframe: false})
 
