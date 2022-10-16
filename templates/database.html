@@ -2,7 +2,6 @@
 {% block content %}
 
 <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="{{url_for('static', filename='database.js')}}"></script>
 
 <div class="container-sm">  
   <!--Drop down menu for sorting database-->
@@ -20,11 +19,6 @@
     </ul>
   </div>
 
-  <script>
-    import relationships from '../data/relationshipData.json' assert {type: 'json'};
-              const obj = JSON.parse(relationships);
-  </script>
-
   <!--Displays database table-->
   <div class="page-container">
     <table class="table table-striped">
@@ -36,30 +30,18 @@
             <th scope="col">Education</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tbod">
         <!--Create data entries based on number of connections in database-->
-        
-        {% for i in range (0, 2) %}
         <tr>
           <th scope="row" id="name"></th>
           <td id="company"></td>
           <td id="job"></td>
           <td id="education"></td>
-        </tr>
-
-        <script>
-          const res = await fetch("http://localhost:5000/networkData")
-          var relationshipData = await res.json()
-          console.log(relationshipData[Object.keys(relationshipData)[0]])
-
-          document.getElementById("name").innerHTML = relationshipData[Object.keys(relationshipData)[0]].firstName + " " + relationshipData[Object.keys(relationshipData)[0]].lastName;
-          document.getElementById("company").innerHTML = relationshipData[Object.keys(relationshipData)[0]].company;
-          document.getElementById("job").innerHTML = relationshipData[Object.keys(relationshipData)[0]].jobTitle;
-          document.getElementById("education").innerHTML = relationshipData[Object.keys(relationshipData)[0]].education;          
+        </tr> 
+        </tbody>
+        
+        <script type="module" src="{{url_for('static', filename='database.js')}}">
         </script>
-        {% endfor %}
-
-      </tbody>
     </table>
   </div>
 </div>
