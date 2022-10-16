@@ -64,9 +64,9 @@
         -webkit-overflow-scrolling: touch;
       }
     </style>
-
-    <!-- Custom styles for this template -->
     <link href="{{url_for('static', filename='sidebars.css')}}" rel="stylesheet">
+    {% block css %}
+    {% endblock css %}
   </head>
 
 

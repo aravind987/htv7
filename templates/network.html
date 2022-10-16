@@ -6,9 +6,26 @@
 
 
 {% block content %}
+
+
 <div class="nodeBackground">
+    <div class="informationCard">
+            <p id="infoName">Name: </p> <p id="cardName">&nbsp</p>
+            <p id="infoDate">Date: </p> <p id="cardDate">&nbsp</p>
+            <p id="infoContact">Contact: </p> <p id="cardContact">&nbsp</p>
+            <p id="infoCompany">Company: </p> <p id="cardCompany">&nbsp</p>
+            <p id="infoIndustry">Industry: </p> <p id="cardIndustry">&nbsp</p>
+            <p id="infoJob">Job: </p> <p id="cardJob">&nbsp</p>
+            <p id="infoEducation">Education: </p> <p id="cardEducation">&nbsp</p>
+            <p id="infoNotes">Notes: </p>  <p id="cardNotes">&nbsp</p>
+
+    </div>
+
     <canvas id="bg"></canvas>
+
 </div>
+
+
 
 
 <script type="module" src="{{url_for('static', filename='network.js')}}"></script>
