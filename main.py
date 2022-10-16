@@ -1,7 +1,9 @@
+from urllib import request
 from relationshipList import relationshipList
 from flask import Flask, render_template, jsonify
 import json
 from flask_cors import CORS
+import requests
 
 app = Flask(__name__)
 CORS(app)
@@ -10,6 +12,19 @@ CORS(app)
 @app.route('/')
 def homePage():
     return render_template('index.html', title="Home")
+
+#form handling (connection adding)
+# @app.route('/', method="post")
+# def formhandler():
+#     """Handle the form submission"""
+    
+#     first = request.forms.get('first')
+#     last = request.forms.get('last')
+
+#     print(first)
+
+    
+    
 
 # show network page
 @app.route('/network')
