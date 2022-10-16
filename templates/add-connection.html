@@ -164,7 +164,9 @@
       <div class="b-example-divider b-example-vr"></div>
 
       <div class="container-sm">
-        <form class="row g-3" method="post" action="gfg.php">
+        <div class="container-sm" style="margin-top:20px;">
+        <h1 style="margin-bottom:30px;">Add Connection</h1>
+        <form class="row g-3" method="post">
 
           <!-- name -->
           <div class="col-md-4">
@@ -205,7 +207,7 @@
           <!-- email -->
           <div class="col-md-4">
             <label for="inputEmail4" class="form-label">Email</label>
-            <input type="email" class="form-control" id="inputEmail4">
+            <input type="email" class="form-control" id="inputEmail">
           </div>
           <!-- linkedin -->
           <div class="col-md-4">
@@ -249,13 +251,23 @@
 
           <!-- submit button -->
           <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button id="submitbtn" class="btn btn-primary" type="submit">Submit form</button>
           </div>
   
         </form>
       </div>
 
     </div>
+
+    <script>
+      const form = document.querySelector('.form');
+      form.addEventListener('submit', event => {
+        event.preventDefault(); 
+
+      });
+
+
+    </script>
 
     <script src="{{url_for('static', filename='/assets/dist/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='/sidebars.js')}}"></script>
