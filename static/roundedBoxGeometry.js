@@ -1,4 +1,4 @@
-import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
+import * as THREE from './three/build/three.module.js'
 
   export default function createBoxWithRoundedEdges( width, height, depth, radius0, smoothness ) {
   let shape = new THREE.Shape();

@@ -1,5 +1,12 @@
 import * as THREE from 'https://cdn.skypack.dev/pin/three@v0.132.2-dLPTyDAYt6rc6aB18fLm/mode=imports/optimized/three.js';
-import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js';
+/*import { OrbitControls } from 'https://cdn.skypack.dev/three@0.132.2/examples/jsm/controls/OrbitControls.js';
+
+
+
+import * as THREE from './three/build/three.module.js'
+*/
+import { OrbitControls } from './three/examples/jsm/controls/OrbitControls.js'
+
 
 import { RelationshipCircle } from './relationshipCircle.js'
 import { RelationshipBox } from './relationshipBox.js'
@@ -8,6 +15,8 @@ import { RelationshipBox } from './relationshipBox.js'
 var circleColors = [0xD5806E, 0xCDD56E, 0x6ED585]
 const scene = new THREE.Scene();
 scene.background = new THREE.Color( 0xffffff );
+
+var font = './static/three/examples/fonts/helvetiker_regular.typeface.json'
 
 //Sets up some stats
 const ORIGINRADIUS = 20;
@@ -27,7 +36,7 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize(window.innerWidth, window.innerHeight);
-camera.position.setZ(30);
+camera.position.setZ(50);
 
 renderer.render (scene, camera);
 
@@ -46,7 +55,7 @@ controls.mouseButtons = {
 //Retrieve relationship data from json
 const res = await fetch("http://localhost:5000/networkData")
 var relationshipData = await res.json()
-console.log(Object.keys(relationshipData["John Doe"])[0])
+console.log(relationshipData[Object.keys(relationshipData)[0]])
 
 //Raycaster for on-click
 const raycaster = new THREE.Raycaster();
@@ -65,7 +74,7 @@ function render( event ) {
 
 	for ( let i = 0; i < intersects.length; i ++ ) {
 	    var rayObject = intersects[i].object;
-	    if(rayObject.name != "My Name" && rayObject.name != "Deletable") {
+	    if(rayObject.name != "My Name" && rayObject.name != "Deletable" && camera.position.z <= 60) {
 	        if(!rayObject.material.color.equals("rgb(255, 0, 0)")) {
 	            rayObject.material.color.set("rgb(255, 0, 0)")
 
@@ -107,17 +116,24 @@ function render( event ) {
 
 }
 
+function removeWhenFar() {
+    if(camera.position.z > 60 && infoBox != null) {
+        scene.remove(infoBox.boxForm)
+        infoBox = null
+    }
+}
+
 window.addEventListener("click", render);
 window.addEventListener( 'pointermove', onPointerMove );
 
 
 
 
-var firstCircle = new RelationshipCircle(10, new THREE.Color(0x1342A3), relationshipData["John Doe"])
+var firstCircle = new RelationshipCircle(10, new THREE.Color(0x1342A3), relationshipData["John Doe"], font)
 
 firstCircle.circleShape.position.x = -50
-
 scene.add(firstCircle.circleShape)
+scene.add(firstCircle.nameShape)
 
 //Displays relationships as circles
 function displayRelationshipCircle(name, index, xPosition, yPosition, acolor) {
@@ -150,6 +166,7 @@ initializePersonalCircle()
 function animate() {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
+    removeWhenFar();
 }
 
 animate();

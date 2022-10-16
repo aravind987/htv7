@@ -13,7 +13,7 @@ export class RelationshipBox {
     this.education = jsonData["education"]
     this.otherNotes = jsonData["otherNotes"]
 
-    var geometryBox = createBoxWithRoundedEdges(width, height, 2, 1, 10)
+    var geometryBox = createBoxWithRoundedEdges(width, height, 0, 1, 1)
     var materialBox = new THREE.MeshBasicMaterial({ color: 0x558DFF, wireframe: false})
 
     this.boxForm = new THREE.Mesh(geometryBox, materialBox)
