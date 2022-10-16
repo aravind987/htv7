@@ -16,13 +16,11 @@ export class RelationshipCircle {
 
         this.circleShape = new THREE.Mesh(geometryCircle, materialCircle)
         this.circleShape.name = this.name
-        this.nameShape
         const loader = new FontLoader()
-        var font = loader.load('./static/three/examples/fonts/helvetiker_regular.typeface.json');
         var fontOptions = {
-            font: font,
-            size: 40,
-            height: 5
+            font: loader.load('./static/three/examples/fonts/gentilis_bold.typeface.json'),
+            size: 0.5,
+            height: 0.4
         }
         this.nameShape = new THREE.Mesh(new TextGeometry("Test", fontOptions), new THREE.MeshBasicMaterial( { color: 0x00ff00 } ))
 
