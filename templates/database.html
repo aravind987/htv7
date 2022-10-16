@@ -3,24 +3,14 @@
 
 <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
 
-<div class="container-sm">  
+<div class="container">  
   <!--Drop down menu for sorting database-->
-  <div class="dropdown" style="padding:15px; text-align: center;">
-    <b style="display: inline-block; font-size: 15px;">Sort By: </b>
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Categories
-    </button>
-    <ul class="dropdown-menu">
-      <!--Connect selections to sorting data-->
-      <li><a class="dropdown-item" href="#">Name</a></li>
-      <li><a class="dropdown-item" href="#">Company</a></li>
-      <li><a class="dropdown-item" href="#">Job Title</a></li>
-      <li><a class="dropdown-item" href="#">Education</a></li>
-    </ul>
+  <div style="padding:15px; text-align: center;">
+    <h style="font-size: x-large;"><b>Connections:</b></h>
   </div>
 
   <!--Displays database table-->
-  <div class="page-container">
+  <div>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -30,16 +20,77 @@
             <th scope="col">Education</th>
           </tr>
         </thead>
-        <tbody id="tbod">
-        <!--Create data entries based on number of connections in database-->
+        <tbody>
         <tr>
-          <th scope="row" id="name"></th>
-          <td id="company"></td>
-          <td id="job"></td>
-          <td id="education"></td>
+          <th scope="row" id="name1"></th>
+          <td id="company1"></td>
+          <td id="job1"></td>
+          <td id="education1"></td>
+        </tr>
+
+        <tr>
+          <th scope="row" id="name2"></th>
+          <td id="company2"></td>
+          <td id="job2"></td>
+          <td id="education2"></td>
+        </tr> 
+
+        <tr>
+          <th scope="row" id="name3"></th>
+          <td id="company3"></td>
+          <td id="job3"></td>
+          <td id="education3"></td>
+        </tr>
+
+        <tr>
+          <th scope="row" id="name4"></th>
+          <td id="company4"></td>
+          <td id="job4"></td>
+          <td id="education4"></td>
+        </tr>
+
+        <tr>
+          <th scope="row" id="name5"></th>
+          <td id="company5"></td>
+          <td id="job5"></td>
+          <td id="education5"></td>
+        </tr>
+
+        <tr>
+          <th scope="row" id="name6"></th>
+          <td id="company6"></td>
+          <td id="job6"></td>
+          <td id="education6"></td>
+        </tr>
+
+        <tr>
+          <th scope="row" id="name7"></th>
+          <td id="company7"></td>
+          <td id="job7"></td>
+          <td id="education8"></td>
+        </tr> 
+
+        <tr>
+          <th scope="row" id="name8"></th>
+          <td id="company8"></td>
+          <td id="job8"></td>
+          <td id="education8"></td>
+        </tr> 
+
+        <tr>
+          <th scope="row" id="name9"></th>
+          <td id="company9"></td>
+          <td id="job9"></td>
+          <td id="education9"></td>
+        </tr> 
+
+        <tr>
+          <th scope="row" id="name10"></th>
+          <td id="company10"></td>
+          <td id="job10"></td>
+          <td id="education10"></td>
         </tr> 
         </tbody>
-        
         <script type="module" src="{{url_for('static', filename='database.js')}}">
         </script>
     </table>
