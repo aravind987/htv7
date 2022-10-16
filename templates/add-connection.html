@@ -165,7 +165,7 @@
 
       <div class="container-sm" style="margin-top:20px;">
         <h1 style="margin-bottom:30px;">Add Connection</h1>
-        <form class="row g-3" method="post" action="gfg.php">
+        <form class="form row g-3">
 
           <!-- name -->
           <div class="col-md-4">
@@ -250,13 +250,23 @@
 
           <!-- submit button -->
           <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button id="submitbtn" class="btn btn-primary" type="submit">Submit form</button>
           </div>
   
         </form>
       </div>
 
     </div>
+
+    <script>
+      const form = document.querySelector('.form');
+      form.addEventListener('submit', event => {
+        event.preventDefault(); 
+
+      });
+
+
+    </script>
 
     <script src="{{url_for('static', filename='/assets/dist/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='/sidebars.js')}}"></script>

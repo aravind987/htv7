@@ -1,5 +1,9 @@
 {% extends 'layout.html' %}
 {% block content %}
+
+<script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
+<script type="module" src="{{url_for('static', filename='database.js')}}"></script>
+
 <div class="container-sm">  
     <!--Drop down menu for sorting database-->
     <div class="dropdown" style="padding:15px; text-align: center;">
@@ -12,33 +16,55 @@
         <li><a class="dropdown-item" href="#">Name</a></li>
         <li><a class="dropdown-item" href="#">Company</a></li>
         <li><a class="dropdown-item" href="#">Job Title</a></li>
-        <li><a class="dropdown-item" href="#">Gnome</a></li>
+        <li><a class="dropdown-item" href="#">Education</a></li>
       </ul>
     </div>
+
+    <script>
+      import relationships from '../data/relationshipData.json' assert {type: 'json'};
+                const obj = JSON.parse(relationships);
+    </script>
 
     <!--Displays database table-->
     <div class="page-container">
       <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Blank</th>
-              <th scope="col">Blank</th>
-              <th scope="col">Blank</th>
-              <th scope="col">Blank</th>
+              <th scope="col">Name</th>
+              <th scope="col">Company</th>
+              <th scope="col">Job Title</th>
+              <th scope="col">Education</th>
             </tr>
           </thead>
           <tbody>
           <!--Create data entries based on number of connections in database-->
+          
+          //Retrieve relationship data from json
+          <script>
+            const res = await fetch("http://localhost:5000/networkData")
+            var relationshipData = await res.json()
+            num = Object.keys(relationshipData).length;
+          </script>
+          
+          {% for i in range (0, num) %}
           <tr>
-            <th scope="row">James</th>
-            <td>N/A</td>
-            <td>Jumper</td>
-            <td>UofT</td>
+            <th scope="row" id="name"></th>
+            <td id="company"></td>
+            <td id="job"></td>
+            <td id="education"></td>
           </tr>
+
+          <script>
+            document.getElementById("name").innerHTML = relationshipData["Object.keys(relationshipData)[0]"].firstName + " " + relationshipData["Object.keys(relationshipData)[0]"].lastName;
+            document.getElementById("company").innerHTML = relationshipData["Object.keys(relationshipData)[0]"].company;
+            document.getElementById("job").innerHTML = relationshipData[Object.keys(relationshipData)[0]].jobTitle;
+            document.getElementById("education").innerHTML = relationshipData[Object.keys(relationshipData)[0]].education;          
+          </script>
+          {% endfor %}
+
       </tbody>
     </table>
   </div>
-</div>  
-<script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
+</div>
 {% endblock content %}
     
