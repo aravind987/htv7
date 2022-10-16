@@ -164,7 +164,7 @@
       <div class="b-example-divider b-example-vr"></div>
 
       <div class="container-sm">
-        <form class="row g-3" method="post" action="gfg.php">
+        <form class="form row g-3">
 
           <!-- name -->
           <div class="col-md-4">
@@ -249,13 +249,23 @@
 
           <!-- submit button -->
           <div class="col-12">
-            <button class="btn btn-primary" type="submit">Submit form</button>
+            <button id="submitbtn" class="btn btn-primary" type="submit">Submit form</button>
           </div>
   
         </form>
       </div>
 
     </div>
+
+    <script>
+      const form = document.querySelector('.form');
+      form.addEventListener('submit', event => {
+        event.preventDefault(); 
+
+      });
+
+
+    </script>
 
     <script src="{{url_for('static', filename='/assets/dist/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{url_for('static', filename='/sidebars.js')}}"></script>
