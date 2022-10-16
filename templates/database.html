@@ -2,31 +2,15 @@
 {% block content %}
 
 <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
-<script type="module" src="{{url_for('static', filename='database.js')}}"></script>
 
-<div class="container-sm">  
+<div class="container">  
   <!--Drop down menu for sorting database-->
-  <div class="dropdown" style="padding:15px; text-align: center;">
-    <b style="display: inline-block; font-size: 15px;">Sort By: </b>
-    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      Categories
-    </button>
-    <ul class="dropdown-menu">
-      <!--Connect selections to sorting data-->
-      <li><a class="dropdown-item" href="#">Name</a></li>
-      <li><a class="dropdown-item" href="#">Company</a></li>
-      <li><a class="dropdown-item" href="#">Job Title</a></li>
-      <li><a class="dropdown-item" href="#">Education</a></li>
-    </ul>
+  <div style="padding:15px; text-align: center;">
+    <h style="font-size: x-large;"><b>Connections:</b></h>
   </div>
 
-  <script>
-    import relationships from '../data/relationshipData.json' assert {type: 'json'};
-              const obj = JSON.parse(relationships);
-  </script>
-
   <!--Displays database table-->
-  <div class="page-container">
+  <div>
     <table class="table table-striped">
         <thead>
           <tr>
@@ -37,29 +21,95 @@
           </tr>
         </thead>
         <tbody>
-        <!--Create data entries based on number of connections in database-->
-        
-        {% for i in range (0, 2) %}
         <tr>
-          <th scope="row" id="name"></th>
-          <td id="company"></td>
-          <td id="job"></td>
-          <td id="education"></td>
+          <th scope="row" id="name1"></th>
+          <td id="company1"></td>
+          <td id="job1"></td>
+          <td id="education1"></td>
         </tr>
 
-        <script>
-          const res = await fetch("http://localhost:5000/networkData")
-          var relationshipData = await res.json()
-          console.log(relationshipData[Object.keys(relationshipData)[0]])
+        <tr>
+          <th scope="row" id="name2"></th>
+          <td id="company2"></td>
+          <td id="job2"></td>
+          <td id="education2"></td>
+        </tr> 
 
-          document.getElementById("name").innerHTML = relationshipData[Object.keys(relationshipData)[0]].firstName + " " + relationshipData[Object.keys(relationshipData)[0]].lastName;
-          document.getElementById("company").innerHTML = relationshipData[Object.keys(relationshipData)[0]].company;
-          document.getElementById("job").innerHTML = relationshipData[Object.keys(relationshipData)[0]].jobTitle;
-          document.getElementById("education").innerHTML = relationshipData[Object.keys(relationshipData)[0]].education;          
+        <tr>
+          <th scope="row" id="name3"></th>
+          <td id="company3"></td>
+          <td id="job3"></td>
+          <td id="education3"></td>
+        </tr>
+
+        <tr>
+          <th scope="row" id="name4"></th>
+          <td id="company4"></td>
+          <td id="job4"></td>
+          <td id="education4"></td>
+        </tr>
+
+        <tr>
+          <th scope="row" id="name5"></th>
+          <td id="company5"></td>
+          <td id="job5"></td>
+          <td id="education5"></td>
+        </tr>
+
+        <tr>
+          <th scope="row" id="name6"></th>
+          <td id="company6"></td>
+          <td id="job6"></td>
+          <td id="education6"></td>
+        </tr>
+
+        <tr>
+          <th scope="row" id="name7"></th>
+          <td id="company7"></td>
+          <td id="job7"></td>
+          <td id="education7"></td>
+        </tr> 
+
+        <tr>
+          <th scope="row" id="name8"></th>
+          <td id="company8"></td>
+          <td id="job8"></td>
+          <td id="education8"></td>
+        </tr> 
+
+        <tr>
+          <th scope="row" id="name9"></th>
+          <td id="company9"></td>
+          <td id="job9"></td>
+          <td id="education9"></td>
+        </tr> 
+
+        <tr>
+          <th scope="row" id="name10"></th>
+          <td id="company10"></td>
+          <td id="job10"></td>
+          <td id="education10"></td>
+        </tr> 
+
+        <!-- For Demo
+        <tr>
+          <th scope="row" id="name11"></th>
+          <td id="company11"></td>
+          <td id="job11"></td>
+          <td id="education11"></td>
+        </tr> 
+
+        <tr>
+          <th scope="row" id="name12"></th>
+          <td id="company12"></td>
+          <td id="job12"></td>
+          <td id="education12"></td>
+        </tr> 
+        -->
+
+        </tbody>
+        <script type="module" src="{{url_for('static', filename='database.js')}}">
         </script>
-        {% endfor %}
-
-      </tbody>
     </table>
   </div>
 </div>

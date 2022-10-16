@@ -18,7 +18,7 @@ def homePage():
 def handleForm():
     firstName = request.form['firstName']
     lastName = request.form['lastName']
-    fullName = firstName + lastName
+    fullName = firstName + " " + lastName
     date = request.form['dateMet']
     company = request.form['company']
     jobTitle = request.form['jobTitle']
@@ -34,7 +34,9 @@ def handleForm():
 
     relationshipDict[fullName] = [firstName,lastName,date,[phoneNum,email],company,industry,jobTitle,education,otherNotes]
     file = open('./data/relationshipData.json',"w")
-    file.write(json.dumps(relationshipDict))
+    output = json.dumps(relationshipDict)
+    output = "{\"relationships\": " + output + "}"
+    file.write(output)
     return redirect ('/')
 
 # show network page
