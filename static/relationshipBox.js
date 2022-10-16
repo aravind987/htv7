@@ -6,7 +6,6 @@ export class RelationshipBox {
     this.name = jsonData["firstName"] + " " + jsonData["lastName"]
     this.date = jsonData["date"]
     this.contactInfo = jsonData["contactInfo"]
-    this.connectionReason = jsonData["connectionReason"]
     this.company = jsonData["company"]
     this.industry = jsonData["industry"]
     this.jobTitle = jsonData["jobTitle"]
